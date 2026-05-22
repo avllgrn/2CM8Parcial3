@@ -125,3 +125,11 @@ class LSE:
                 aux1 = aux1.siguiente
                 aux2 = aux2.siguiente
             aux1.siguiente = Nodo(dato, aux2)
+
+    def cuentaNodos(self):
+        n = 0
+        aux = self.primero
+        while aux!=None:
+            n += 1                          # Se cuenta cada nodo
+            aux = aux.siguiente             # Se desplaza una referencia auxiliar, nodo por nodo
+        return n
