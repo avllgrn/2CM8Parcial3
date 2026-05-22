@@ -2,6 +2,14 @@ from Clases.LSE import LSE
 from subprocess import run
 from random import randrange
 
+def cuentaNodos(L):
+    n = 0
+    aux = L.primero
+    while aux!=None:
+        n += 1                          # Se cuenta cada nodo
+        aux = aux.siguiente             # Se desplaza una referencia auxiliar, nodo por nodo
+    return n
+
 if __name__=='__main__':
     run('cls', shell=True)
 
@@ -12,11 +20,5 @@ if __name__=='__main__':
     L.muestraLSE()
     print('\n\n')
 
-    n = 0
-    aux = L.primero
-    while aux!=None:
-        n += 1                          # Se cuenta cada nodo
-        aux = aux.siguiente             # Se desplaza una referencia auxiliar, nodo por nodo
-    
-
+    n = cuentaNodos( L )
     print(f'En la lista, hay {n} nodo(s)')
