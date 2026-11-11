@@ -1,46 +1,37 @@
 from subprocess import run
 
-class IteradorUnitarioAscendente:
-    def __init__(self, n):
-        self.ini = 0
-        self.fin = n
+class IteradorFibonacci:
+    def __init__(self, terminos):
+        self.a = 0
+        self.b = 1
+        self.i = 0
+        self.terminos = terminos
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self.ini <= self.fin:
-            d = self.ini
-            self.ini += 1
+        if self.i <= self.terminos and (self.i == 0 or self.i == 1):
+            d = self.i
+            self.i += 1
             return d
-        else:
-            raise StopIteration
-
-class IteradorUnitarioDescendente:
-    def __init__(self, n):
-        self.ini = 0
-        self.fin = n
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.fin >= self.ini:
-            d = self.fin
-            self.fin -= 1
-            return d
+        elif self.i <= self.terminos:
+            c = self.a + self.b
+            self.a = self.b
+            self.b = c
+            self.i += 1
+            return c
         else:
             raise StopIteration
 
 if __name__ == '__main__':
     run('cls', shell=True)
 
-    I = IteradorUnitarioAscendente(10)
+    n = float(input('Dame n '))
+    print('\n\n')
+
+    I = IteradorFibonacci( n )
     for dato in I:
         print(dato)
     print()
 
-    I = IteradorUnitarioDescendente(10)
-    for dato in I:
-        print(dato)
-    print()
