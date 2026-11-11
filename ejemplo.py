@@ -1,37 +1,46 @@
 from subprocess import run
-from random import randrange
+
+class IteradorUnitarioAscendente:
+    def __init__(self, n):
+        self.ini = 0
+        self.fin = n
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.ini <= self.fin:
+            d = self.ini
+            self.ini += 1
+            return d
+        else:
+            raise StopIteration
+
+class IteradorUnitarioDescendente:
+    def __init__(self, n):
+        self.ini = 0
+        self.fin = n
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.fin >= self.ini:
+            d = self.fin
+            self.fin -= 1
+            return d
+        else:
+            raise StopIteration
 
 if __name__ == '__main__':
     run('cls', shell=True)
 
-    L = [randrange(100) for i in range(5)]
-    print(L)
-
-    Iterador = iter(L)         # Se instancia un iterador a un objeto iterable (lista)
-    for dato in Iterador:
+    I = IteradorUnitarioAscendente(10)
+    for dato in I:
         print(dato)
     print()
 
-    T = tuple([randrange(100) for i in range(5)])
-    print(T)
-
-    Iterador = iter(T)         # Se instancia un iterador a un objeto iterable (tupla)
-    for dato in Iterador:
-        print(dato)
-    print()
-
-    C = set([randrange(100) for i in range(5)])
-    print(C)
-
-    Iterador = iter(C)         # Se instancia un iterador a un objeto iterable (conjunto)
-    for dato in Iterador:
-        print(dato)
-    print()
-
-    D = dict.fromkeys(L, None)
-    print(D)
-
-    Iterador = iter(D)         # Se instancia un iterador a un objeto iterable (diccionario)
-    for dato in Iterador:
+    I = IteradorUnitarioDescendente(10)
+    for dato in I:
         print(dato)
     print()
