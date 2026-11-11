@@ -1,37 +1,48 @@
 from subprocess import run
+from Clases.ClaseCola import Cola
 
-class IteradorFibonacci:
-    def __init__(self, terminos):
-        self.a = 0
-        self.b = 1
-        self.i = 0
-        self.terminos = terminos
+class IteradorLSE:
+    def __init__(self, L):
+        self.aux = L.primero
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self.i <= self.terminos and (self.i == 0 or self.i == 1):
-            d = self.i
-            self.i += 1
-            return d
-        elif self.i <= self.terminos:
-            c = self.a + self.b
-            self.a = self.b
-            self.b = c
-            self.i += 1
-            return c
+        if self.aux != None:
+            n = self.aux
+            self.aux = self.aux.siguiente
+            return n
         else:
             raise StopIteration
+
+class LSE (Cola):
+
+    def __iter__(self):
+        return IteradorLSE(self)
+
+    def __str__(self):
+        cadena = ''
+        for n in self:
+            cadena += str(n)
+        return cadena
 
 if __name__ == '__main__':
     run('cls', shell=True)
 
-    n = float(input('Dame n '))
-    print('\n\n')
+    L = LSE()
 
-    I = IteradorFibonacci( n )
-    for dato in I:
-        print(dato)
+    L.push(1)
+    L.push(3)
+    L.push(5)
+    L.push(7)
+    L.push(9)
+
+    for dato in L:
+        print(dato, end='')
     print()
 
+    print(L)
+    print()
+
+    print('\n\nFin de programa\n\n')
